@@ -18,3 +18,10 @@ bool isPrime(int n)
     return true;
 }
 ```
+
+## Gauss
+```c++
+int gauss(int n) {
+    return (n * (n + 1)) / 2;
+}
+```
