@@ -1,8 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
 typedef long long LL;
-typedef long double LD;
-typedef pair <int, int> pii;
  
 const int MOD = 1000000007;
 string s;
@@ -12,7 +10,8 @@ void work() {
 	LL n;
 	cin >> n;
 	n %= MOD;
-	for (auto i : s) cnt[i - 'a'] ++;
+	for (auto i : s) 
+		cnt[i - 'a'] ++;
 	LL ans = 0;
 	for (auto i : s) {
 		for (int j = 0; j < i - 'a'; j++) {

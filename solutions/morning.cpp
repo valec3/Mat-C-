@@ -3,12 +3,15 @@ using namespace std;
 typedef long long LL;
 
 int main(){
-    int secons{};
+    int secons{4};
     string s{};
     cin>>s;
-    for (int i = 0; i < 4; i++)
+    for (int i = 0; i < 3; i++)
     {
-        seconds += s[i];
+        if(s[0]==1){
+            seconds-=1;
+        }
+        seconds += s[i+1]-s[i];
     }
     
     return 0;
