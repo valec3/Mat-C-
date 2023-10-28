@@ -317,6 +317,11 @@ int x = q.front(); // x = 1
 ```
 ## Pares
 -------
+### Crear un par
+
+```cpp
+pair<int, int> p; // p = {0, 0}
+```
 ## Grafos
 -------
 <h2 id="tips">Algoritmos</h2>
