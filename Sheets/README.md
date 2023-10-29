@@ -205,17 +205,23 @@ int gcd(int a, int b) {
     }
     return a;
 }
+// third version (function implemented in C++ STL)
+int gcd(int a, int b) {
+    return __gcd(a, b);
+}
 ```
+
 ## Minimo Comun Multiplo
 ```c++
 
 int lcm(int a, int b) {
     return a / gcd(a, b) * b;
 }
-// without gcd
+// second version (function implemented in C++ STL)
 int lcm(int a, int b) {
-    return a * b / gcd(a, b);
+    return a / __gcd(a, b) * b;
 }
+```
 ```
 
 ## Busqueda Binaria

@@ -1,5 +1,15 @@
-# Documentacion de metodos importantes C++
+## ***Documentacion de metodos importantes C++***
+
+
 <a href="#arreglos">Arreglos</a>
+<a href="#strings">Strings</a>
+<a href="#vectores">Vectores</a>
+<a href="#conjuntos">Conjuntos</a>
+<a href="#mapas">Mapas</a>
+<a href="#arboles">Arboles</a>
+<a href="#colas">Colas</a>
+<a href="#pares">Pares</a>
+<a href="#grafos">Grafos</a>
 <a href="#tips">tips</a>
 
 <h2 id="arreglos">Arreglos</h2>
@@ -183,20 +193,25 @@ sort(s.begin(), s.end()); // s = "123"
 string s = "123";
 sort(s.begin(), s.end(), greater<char>()); // s = "321"
 ```
+
+
+
+
+
 ## Vectores
 -------
-#### Crear un vector
+##### Crear un vector
 
 ```cpp
 vector<int> v; // v = {}
 ```
-#### Crear un vector con un tamaño inicial
+##### Crear un vector con un tamaño inicial
 
 ```cpp
 vector<int> v(3); // v = {0, 0, 0}
 ```
 
-#### Longitud de un vector
+##### Longitud de un vector
 
 ```cpp
 vector<int> v = {1, 2, 3};
@@ -210,19 +225,19 @@ vector<int> v = {3, 2, 1};
 sort(v.begin(), v.end()); // v = {1, 2, 3}
 ```
 
-### Ordenar un vector de forma descendente
+#### Ordenar un vector de forma descendente
 
 ```cpp
 vector<int> v = {1, 2, 3};
 sort(v.begin(), v.end(), greater<int>()); // v = {3, 2, 1}
 ```
-### Ordenar un vector de pares por el primer elemento
+#### Ordenar un vector de pares por el primer elemento
 
 ```cpp
 vector<pair<int, int>> v = {{3, 1}, {2, 2}, {1, 3}};
 sort(v.begin(), v.end()); // v = {{1, 3}, {2, 2}, {3, 1}}
 ```
-### Ordenar un vector de pares por el segundo elemento
+#### Ordenar un vector de pares por el segundo elemento
 
 ```cpp
 vector<pair<int, int>> v = {{1, 3}, {2, 2}, {3, 1}};
@@ -230,6 +245,99 @@ sort(v.begin(), v.end(), [](pair<int, int> a, pair<int, int> b) {
     return a.second < b.second;
 }); // v = {{3, 1}, {2, 2}, {1, 3}}
 ```
+
+
+
+
+## Conjuntos
+
+#### Crear un conjunto
+
+```cpp
+set<int> s; // s = {}
+// Con un tamaño inicial
+set<int> s(3); // s = {0, 0, 0}
+```
+#### Longitud de un conjunto
+
+```cpp
+set<int> s = {1, 2, 3};
+int len = s.size(); // len = 3
+```
+#### Insertar un elemento en un conjunto
+
+```cpp
+set<int> s = {1, 2, 3};
+s.insert(4); // s = {1, 2, 3, 4}
+```
+#### Eliminar un elemento en un conjunto
+
+```cpp
+set<int> s = {1, 2, 3};
+s.erase(2); // s = {1, 3}
+```
+#### Encontrar un elemento en un conjunto
+
+```cpp
+set<int> s = {1, 2, 3};
+if(s.find(2) != s.end()) cout << "Encontrado" << endl;
+```
+#### Encontrar el primer elemento en un conjunto
+
+```cpp
+set<int> s = {1, 2, 3};
+int x = *s.begin(); // x = 1
+```
+#### Encontrar el ultimo elemento en un conjunto
+
+```cpp
+set<int> s = {1, 2, 3};
+int x = *s.rbegin(); // x = 3
+```
+#### Encontrar el elemento mas grande en un conjunto
+
+```cpp
+set<int> s = {1, 2, 3};
+int x = *max_element(s.begin(), s.end()); // x = 3
+```
+#### Encontrar el elemento mas pequeño en un conjunto
+
+```cpp
+set<int> s = {1, 2, 3};
+int x = *min_element(s.begin(), s.end()); // x = 1
+```
+#### Recorrer un conjunto
+
+```cpp
+set<int> s = {1, 2, 3};
+// Forma 1
+for(auto x : s) {
+    cout << x << endl;
+}
+// Forma 2
+for(auto it = s.begin(); it != s.end(); it++) {
+    cout << *it << endl;
+}
+```
+#### Recorrer un conjunto de forma inversa
+
+```cpp
+set<int> s = {1, 2, 3};
+for(auto it = s.rbegin(); it != s.rend(); it++) {
+    cout << *it << endl;
+}
+```
+
+#### Convertir un conjunto a un vector
+
+```cpp
+set<int> s = {1, 2, 3};
+vector<int> v(s.begin(), s.end()); // v = {1, 2, 3}
+```
+
+
+
+
 ## Mapas
 ## Conjuntos
 #### Crear un conjunto
@@ -317,14 +425,102 @@ int x = q.front(); // x = 1
 ```
 ## Pares
 -------
+
 ### Crear un par
 
 ```cpp
 pair<int, int> p; // p = {0, 0}
 ```
+<h2>Bits</h2>
+<h4>Operadores</h4>
+
+| Operador | Descripcion |
+| --- | --- |
+| & | AND |
+| \| | OR |
+| ^ | XOR |
+| ~ | NOT |
+| << | Desplazar a la izquierda |
+| >> | Desplazar a la derecha |
+| &= | AND y asignar |
+| \|= | OR y asignar |
+| ^= | XOR y asignar |
+| <<= | Desplazar a la izquierda y asignar |
+| >>= | Desplazar a la derecha y asignar |
+
+<h4>Funciones</h4>
+
+| Funcion | Descripcion |
+| --- | --- |
+| __builtin_popcount(x) | Cuenta los bits 1 |
+| __builtin_popcountll(x) | Cuenta los bits 1 |
+| __builtin_ctz(x) | Cuenta los bits 0 desde la derecha |
+| __builtin_ctzll(x) | Cuenta los bits 0 desde la derecha |
+| __builtin_clz(x) | Cuenta los bits 0 desde la izquierda |
+| __builtin_clzll(x) | Cuenta los bits 0 desde la izquierda |
+| __builtin_ffs(x) | Devuelve la posicion del primer bit 1 |
+| __builtin_ffsll(x) | Devuelve la posicion del primer bit 1 |
+| __builtin_parity(x) | Devuelve 1 si el numero de bits 1 es par, 0 si es impar |
+| __builtin_parityll(x) | Devuelve 1 si el numero de bits 1 es par, 0 si es impar |
+| __builtin_bswap32(x) | Intercambia los bytes de un entero de 32 bits |
+| __builtin_bswap64(x) | Intercambia los bytes de un entero de 64 bits |
+
+<h4>Operaciones</h4>
+
+| Operacion | Descripcion |
+| --- | --- |
+| x & (x - 1) | Elimina el ultimo bit 1 |
+| x & (-x) | Devuelve el ultimo bit 1 |
+| x \| (1 << n) | Enciende el bit n |
+| x & ~(1 << n) | Apaga el bit n |
+| x ^ (1 << n) | Invierte el bit n |
+| x & ((1 << n) - 1) | Elimina los bits desde la posicion n |
+| x & ~((1 << n) - 1) | Elimina los bits desde la posicion 0 hasta la posicion n |
+| x & ((1 << n) - 1) | Devuelve los bits desde la posicion 0 hasta la posicion n |
+| x & ~((1 << (n + 1)) - 1) | Devuelve los bits desde la posicion n hasta la posicion 0 |
+| x & (x - 1) | Devuelve el numero de bits 1 |
+| x & -x | Devuelve el numero de bits 1 |
+| x & (x + 1) | Devuelve el numero de bits 0 desde la derecha |
+| x & ~(x + 1) | Devuelve el numero de bits 0 desde la derecha |
+| x & (x - 1) | Devuelve el numero de bits 0 desde la izquierda |
+| x & (x - 1) | Devuelve el numero de bits 0 desde la izquierda |
+| x & (x - 1) | Devuelve la posicion del primer bit 1 |
+
+<h4>Ejemplos</h4>
+
+#### Encender un bit
+
+```cpp
+int x = 0;
+x |= (1 << 2); // x = 4
+```
+#### Apagar un bit
+
+```cpp
+int x = 7;
+x &= ~(1 << 2); // x = 3
+```
+#### Invertir un bit
+
+```cpp
+int x = 7;
+x ^= (1 << 2); // x = 3
+```
+
 ## Grafos
 -------
+
+
+
+<!------------------------------------------->
+<!------------------------------------------->
+<!------------------------------------------->
+<!------------------------------------------->
+<!------------------------------------------->
+<!------------------------------------------->
+
 <h2 id="tips">Algoritmos</h2>
+
 
 #### Busqueda binaria
 
@@ -416,7 +612,4 @@ int gcd(int a, int b) {
     if(b == 0) return a;
     return gcd(b, a % b);
 }
-```
-o tambien
-```cpp
 ```
