@@ -246,7 +246,42 @@ sort(v.begin(), v.end(), [](pair<int, int> a, pair<int, int> b) {
 }); // v = {{3, 1}, {2, 2}, {1, 3}}
 ```
 
+#### Eliminar un elemento en un vector
 
+```cpp
+vector<int> v = {1, 2, 3};
+v.erase(v.begin() + 1); // v = {1, 3}
+
+// Eliminar los ultimos 2 elementos
+v.erase(v.end() - 2, v.end()); // v = {1}
+
+// Eliminar todos los elementos
+v.clear(); // v = {}
+
+// Eliminar todos los elementos que cumplan una condicion
+v.erase(remove_if(v.begin(), v.end(), [](int x) {
+    return x == 1;
+}), v.end()); // v = {2, 3}
+
+// Eliminar todos los elementos que no cumplan una condicion
+v.erase(remove_if(v.begin(), v.end(), [](int x) {
+    return x != 1;
+}), v.end()); // v = {1}
+
+// Eliminar todos los elementos duplicados
+sort(v.begin(), v.end());
+v.erase(unique(v.begin(), v.end()), v.end()); // v = {1, 2, 3}
+
+// Eliminar elemento en la posicion n
+v.erase(v.begin() + n); // v = {1, 3}
+
+// Eliminar el elemento 2
+v.erase(find(v.begin(), v.end(), 2)); // v = {1, 3}
+
+// Eliminar los elementos desde la posicion n hasta la posicion m
+v.erase(v.begin() + n, v.begin() + m); // v = {1, 3}
+
+```
 
 
 ## Conjuntos
