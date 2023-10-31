@@ -1,6 +1,9 @@
 
 # Índice de Algoritmos
 
+[Conjunto de problemas](https://docs.google.com/spreadsheets/d/1ieJST3BrLQDiRv6yMv8F6CLaF2g6S-wC/edit#gid=443631420)
+
+
 ## 1. Algoritmos de Búsqueda
     - 1.1 Búsqueda Binaria
     - 1.2 Búsqueda en Profundidad (DFS)
