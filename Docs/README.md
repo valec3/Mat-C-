@@ -648,3 +648,15 @@ int gcd(int a, int b) {
     return gcd(b, a % b);
 }
 ```
+
+#Fibonacci Memoizacion
+```cpp
+int FibMemoizacion(int n, vector<int>&arr){//4
+    if(arr[n] != 0) return arr[n];
+    if(n < 2) return n;
+    //arr[4] = 2 + 1 --> 3
+    arr[n] = FibMemoizacion(n-1 , arr) + FibMemoizacion(n - 2, arr);//3
+    //arr[4] = 3,arr[3] = 2 , arr[2] = 1
+    return arr[n];
+}
+```
