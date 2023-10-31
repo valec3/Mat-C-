@@ -713,3 +713,13 @@ ll expMod(ll a, ll n, int m){
     }
 }
 ```
+#### Algoritmo de Euclides
+```cpp
+while(a % b != 0){
+    a %= b;
+    swap(a,b);
+}
+
+mcd = b;
+mcm = (p*q)/mcd;
+```
