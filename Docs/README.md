@@ -660,3 +660,56 @@ int FibMemoizacion(int n, vector<int>&arr){//4
     return arr[n];
 }
 ```
+#### Fibonacci Dinamico
+```cpp
+int FibDinamico(int n){
+    vector<int>dinamico(n+1 , 0);
+
+    dinamico[0] = 0;
+    dinamico[1] = 1;
+
+    for(int i = 2; i < n; i++){
+        dinamico[i] = dinamico[i-1] + dinamico[i-2];
+    }
+
+    return dinamico[n];
+}
+```
+#### Quicksort
+```cpp
+void quicksort(int* arr, int izq, int der){
+    int i = izq, j = der, temp;
+    int p = arr[(izq + der)/2];//toma un numero del arreglo como valor :: exactamente el q esta en la posicion media del mismo
+
+    while(i <= j){
+        while(arr[i] < p) i++;
+        while(arr[j] > p) j--;
+
+        if(i <= j){
+            temp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = temp;
+            i++;
+            j--;
+        }
+    }
+
+    if(izq < j) quicksort(arr, izq, j);
+    if(i < der) quicksort(arr, i, der);
+
+}
+```
+#### Exponenciacion Rapida
+```cpp
+ll expMod(ll a, ll n, int m){
+    if(n == 0) return 1;
+    if(n == 1) return a % m;
+    if(n % 2 == 0){
+        ll resultado = exp(a, n/2);
+        return ((resultado % m) * (resultado % m)) % m;
+    }
+    else{
+        return ((exp(a, n-1) % m) * (a % m)) % m;
+    }
+}
+```
