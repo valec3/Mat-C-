@@ -723,3 +723,19 @@ while(a % b != 0){
 mcd = b;
 mcm = (p*q)/mcd;
 ```
+#### Algoritmo de Kadane
+```cpp
+int kadane(int A[], int N) {
+    int maximo_total = A[0];
+    int maximo_actual = A[0];
+
+    for (int i = 1; i < N; i++) {
+        maximo_actual = max(A[i], maximo_actual + A[i]);
+        if (maximo_actual > maximo_total) {
+            maximo_total = maximo_actual;
+        }
+    }
+
+    return maximo_total;
+}
+```
