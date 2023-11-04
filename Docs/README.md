@@ -648,3 +648,122 @@ int gcd(int a, int b) {
     return gcd(b, a % b);
 }
 ```
+
+#### Fibonacci Memoizacion
+```cpp
+int FibMemoizacion(int n, vector<int>&arr){//4
+    if(arr[n] != 0) return arr[n];
+    if(n < 2) return n;
+    //arr[4] = 2 + 1 --> 3
+    arr[n] = FibMemoizacion(n-1 , arr) + FibMemoizacion(n - 2, arr);//3
+    //arr[4] = 3,arr[3] = 2 , arr[2] = 1
+    return arr[n];
+}
+```
+#### Fibonacci Dinamico
+```cpp
+int FibDinamico(int n){
+    vector<int>dinamico(n+1 , 0);
+
+    dinamico[0] = 0;
+    dinamico[1] = 1;
+
+    for(int i = 2; i < n; i++){
+        dinamico[i] = dinamico[i-1] + dinamico[i-2];
+    }
+
+    return dinamico[n];
+}
+```
+#### Quicksort
+```cpp
+void quicksort(int* arr, int izq, int der){
+    int i = izq, j = der, temp;
+    int p = arr[(izq + der)/2];//toma un numero del arreglo como valor :: exactamente el q esta en la posicion media del mismo
+
+    while(i <= j){
+        while(arr[i] < p) i++;
+        while(arr[j] > p) j--;
+
+        if(i <= j){
+            temp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = temp;
+            i++;
+            j--;
+        }
+    }
+
+    if(izq < j) quicksort(arr, izq, j);
+    if(i < der) quicksort(arr, i, der);
+
+}
+```
+#### Exponenciacion Rapida
+```cpp
+ll expMod(ll a, ll n, int m){
+    if(n == 0) return 1;
+    if(n == 1) return a % m;
+    if(n % 2 == 0){
+        ll resultado = exp(a, n/2);
+        return ((resultado % m) * (resultado % m)) % m;
+    }
+    else{
+        return ((exp(a, n-1) % m) * (a % m)) % m;
+    }
+}
+```
+#### Algoritmo de Euclides
+```cpp
+while(a % b != 0){
+    a %= b;
+    swap(a,b);
+}
+
+mcd = b;
+mcm = (p*q)/mcd;
+```
+#### Algoritmo de Kadane
+```cpp
+int kadane(int A[], int N) {
+    int maximo_total = A[0];
+    int maximo_actual = A[0];
+
+    for (int i = 1; i < N; i++) {
+        maximo_actual = max(A[i], maximo_actual + A[i]);
+        if (maximo_actual > maximo_total) {
+            maximo_total = maximo_actual;
+        }
+    }
+
+    return maximo_total;
+}
+```
+#### Windows Sliding
+```cpp
+int maxSum(int arr[], int n, int k)
+{
+    // n must be greater
+    if (n < k) {
+        cout << "Invalid";
+        return -1;
+    }
+ 
+    // Compute sum of first window of size k
+    int max_sum = 0;
+    for (int i = 0; i < k; i++)
+        max_sum += arr[i];
+ 
+    // Compute sums of remaining windows by
+    // removing first element of previous
+    // window and adding last element of
+    // current window.
+    int window_sum = max_sum;
+    for (int i = k; i < n; i++) {
+        window_sum += arr[i] - arr[i - k];
+        max_sum = max(max_sum, window_sum);
+    }
+ 
+    return max_sum;
+}
+```
