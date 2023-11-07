@@ -6,6 +6,7 @@ using namespace std;
 void reverseInGroups(vector<long long>& arr, int n, int k){
     for(int i=0;i<n;i+=k){
         int left = i;
+        // If the last group is smaller than k
         int right = min(i+k-1,n-1);
         while(left<right){
             swap(arr[left++],arr[right--]);
