@@ -1,5 +1,15 @@
-# Documentacion de metodos importantes C++
+## ***Documentacion de metodos importantes C++***
+
+
 <a href="#arreglos">Arreglos</a>
+<a href="#strings">Strings</a>
+<a href="#vectores">Vectores</a>
+<a href="#conjuntos">Conjuntos</a>
+<a href="#mapas">Mapas</a>
+<a href="#arboles">Arboles</a>
+<a href="#colas">Colas</a>
+<a href="#pares">Pares</a>
+<a href="#grafos">Grafos</a>
 <a href="#tips">tips</a>
 
 <h2 id="arreglos">Arreglos</h2>
@@ -183,20 +193,25 @@ sort(s.begin(), s.end()); // s = "123"
 string s = "123";
 sort(s.begin(), s.end(), greater<char>()); // s = "321"
 ```
+
+
+
+
+
 ## Vectores
 -------
-#### Crear un vector
+##### Crear un vector
 
 ```cpp
 vector<int> v; // v = {}
 ```
-#### Crear un vector con un tamaño inicial
+##### Crear un vector con un tamaño inicial
 
 ```cpp
 vector<int> v(3); // v = {0, 0, 0}
 ```
 
-#### Longitud de un vector
+##### Longitud de un vector
 
 ```cpp
 vector<int> v = {1, 2, 3};
@@ -210,19 +225,19 @@ vector<int> v = {3, 2, 1};
 sort(v.begin(), v.end()); // v = {1, 2, 3}
 ```
 
-### Ordenar un vector de forma descendente
+#### Ordenar un vector de forma descendente
 
 ```cpp
 vector<int> v = {1, 2, 3};
 sort(v.begin(), v.end(), greater<int>()); // v = {3, 2, 1}
 ```
-### Ordenar un vector de pares por el primer elemento
+#### Ordenar un vector de pares por el primer elemento
 
 ```cpp
 vector<pair<int, int>> v = {{3, 1}, {2, 2}, {1, 3}};
 sort(v.begin(), v.end()); // v = {{1, 3}, {2, 2}, {3, 1}}
 ```
-### Ordenar un vector de pares por el segundo elemento
+#### Ordenar un vector de pares por el segundo elemento
 
 ```cpp
 vector<pair<int, int>> v = {{1, 3}, {2, 2}, {3, 1}};
@@ -230,6 +245,134 @@ sort(v.begin(), v.end(), [](pair<int, int> a, pair<int, int> b) {
     return a.second < b.second;
 }); // v = {{3, 1}, {2, 2}, {1, 3}}
 ```
+
+#### Eliminar un elemento en un vector
+
+```cpp
+vector<int> v = {1, 2, 3};
+v.erase(v.begin() + 1); // v = {1, 3}
+
+// Eliminar los ultimos 2 elementos
+v.erase(v.end() - 2, v.end()); // v = {1}
+
+// Eliminar todos los elementos
+v.clear(); // v = {}
+
+// Eliminar todos los elementos que cumplan una condicion
+v.erase(remove_if(v.begin(), v.end(), [](int x) {
+    return x == 1;
+}), v.end()); // v = {2, 3}
+
+// Eliminar todos los elementos que no cumplan una condicion
+v.erase(remove_if(v.begin(), v.end(), [](int x) {
+    return x != 1;
+}), v.end()); // v = {1}
+
+// Eliminar todos los elementos duplicados
+sort(v.begin(), v.end());
+v.erase(unique(v.begin(), v.end()), v.end()); // v = {1, 2, 3}
+
+// Eliminar elemento en la posicion n
+v.erase(v.begin() + n); // v = {1, 3}
+
+// Eliminar el elemento 2
+v.erase(find(v.begin(), v.end(), 2)); // v = {1, 3}
+
+// Eliminar los elementos desde la posicion n hasta la posicion m
+v.erase(v.begin() + n, v.begin() + m); // v = {1, 3}
+
+```
+
+
+## Conjuntos
+
+#### Crear un conjunto
+
+```cpp
+set<int> s; // s = {}
+// Con un tamaño inicial
+set<int> s(3); // s = {0, 0, 0}
+```
+#### Longitud de un conjunto
+
+```cpp
+set<int> s = {1, 2, 3};
+int len = s.size(); // len = 3
+```
+#### Insertar un elemento en un conjunto
+
+```cpp
+set<int> s = {1, 2, 3};
+s.insert(4); // s = {1, 2, 3, 4}
+```
+#### Eliminar un elemento en un conjunto
+
+```cpp
+set<int> s = {1, 2, 3};
+s.erase(2); // s = {1, 3}
+```
+#### Encontrar un elemento en un conjunto
+
+```cpp
+set<int> s = {1, 2, 3};
+if(s.find(2) != s.end()) cout << "Encontrado" << endl;
+```
+#### Encontrar el primer elemento en un conjunto
+
+```cpp
+set<int> s = {1, 2, 3};
+int x = *s.begin(); // x = 1
+```
+#### Encontrar el ultimo elemento en un conjunto
+
+```cpp
+set<int> s = {1, 2, 3};
+int x = *s.rbegin(); // x = 3
+```
+#### Encontrar el elemento mas grande en un conjunto
+
+```cpp
+set<int> s = {1, 2, 3};
+int x = *max_element(s.begin(), s.end()); // x = 3
+```
+#### Encontrar el elemento mas pequeño en un conjunto
+
+```cpp
+set<int> s = {1, 2, 3};
+int x = *min_element(s.begin(), s.end()); // x = 1
+```
+#### Recorrer un conjunto
+
+```cpp
+set<int> s = {1, 2, 3};
+// Forma 1
+for(auto x : s) {
+    cout << x << endl;
+}
+// Forma 2
+for(auto it = s.begin(); it != s.end(); it++) {
+    cout << *it << endl;
+}
+```
+#### Recorrer un conjunto de forma inversa
+
+```cpp
+set<int> s = {1, 2, 3};
+for(auto it = s.rbegin(); it != s.rend(); it++) {
+    cout << *it << endl;
+}
+```
+
+#### Convertir un conjunto a un vector
+
+```cpp
+set<int> s = {1, 2, 3};
+vector<int> v(s.begin(), s.end()); // v = {1, 2, 3}
+```
+
+
+
+
 ## Mapas
 ## Conjuntos
 #### Crear un conjunto
@@ -317,9 +460,102 @@ int x = q.front(); // x = 1
 ```
 ## Pares
 -------
+
+### Crear un par
+
+```cpp
+pair<int, int> p; // p = {0, 0}
+```
+<h2>Bits</h2>
+<h4>Operadores</h4>
+
+| Operador | Descripcion |
+| --- | --- |
+| & | AND |
+| \| | OR |
+| ^ | XOR |
+| ~ | NOT |
+| << | Desplazar a la izquierda |
+| >> | Desplazar a la derecha |
+| &= | AND y asignar |
+| \|= | OR y asignar |
+| ^= | XOR y asignar |
+| <<= | Desplazar a la izquierda y asignar |
+| >>= | Desplazar a la derecha y asignar |
+
+<h4>Funciones</h4>
+
+| Funcion | Descripcion |
+| --- | --- |
+| __builtin_popcount(x) | Cuenta los bits 1 |
+| __builtin_popcountll(x) | Cuenta los bits 1 |
+| __builtin_ctz(x) | Cuenta los bits 0 desde la derecha |
+| __builtin_ctzll(x) | Cuenta los bits 0 desde la derecha |
+| __builtin_clz(x) | Cuenta los bits 0 desde la izquierda |
+| __builtin_clzll(x) | Cuenta los bits 0 desde la izquierda |
+| __builtin_ffs(x) | Devuelve la posicion del primer bit 1 |
+| __builtin_ffsll(x) | Devuelve la posicion del primer bit 1 |
+| __builtin_parity(x) | Devuelve 1 si el numero de bits 1 es par, 0 si es impar |
+| __builtin_parityll(x) | Devuelve 1 si el numero de bits 1 es par, 0 si es impar |
+| __builtin_bswap32(x) | Intercambia los bytes de un entero de 32 bits |
+| __builtin_bswap64(x) | Intercambia los bytes de un entero de 64 bits |
+
+<h4>Operaciones</h4>
+
+| Operacion | Descripcion |
+| --- | --- |
+| x & (x - 1) | Elimina el ultimo bit 1 |
+| x & (-x) | Devuelve el ultimo bit 1 |
+| x \| (1 << n) | Enciende el bit n |
+| x & ~(1 << n) | Apaga el bit n |
+| x ^ (1 << n) | Invierte el bit n |
+| x & ((1 << n) - 1) | Elimina los bits desde la posicion n |
+| x & ~((1 << n) - 1) | Elimina los bits desde la posicion 0 hasta la posicion n |
+| x & ((1 << n) - 1) | Devuelve los bits desde la posicion 0 hasta la posicion n |
+| x & ~((1 << (n + 1)) - 1) | Devuelve los bits desde la posicion n hasta la posicion 0 |
+| x & (x - 1) | Devuelve el numero de bits 1 |
+| x & -x | Devuelve el numero de bits 1 |
+| x & (x + 1) | Devuelve el numero de bits 0 desde la derecha |
+| x & ~(x + 1) | Devuelve el numero de bits 0 desde la derecha |
+| x & (x - 1) | Devuelve el numero de bits 0 desde la izquierda |
+| x & (x - 1) | Devuelve el numero de bits 0 desde la izquierda |
+| x & (x - 1) | Devuelve la posicion del primer bit 1 |
+
+<h4>Ejemplos</h4>
+
+#### Encender un bit
+
+```cpp
+int x = 0;
+x |= (1 << 2); // x = 4
+```
+#### Apagar un bit
+
+```cpp
+int x = 7;
+x &= ~(1 << 2); // x = 3
+```
+#### Invertir un bit
+
+```cpp
+int x = 7;
+x ^= (1 << 2); // x = 3
+```
+
 ## Grafos
 -------
+
+
+
+<!------------------------------------------->
+<!------------------------------------------->
+<!------------------------------------------->
+<!------------------------------------------->
+<!------------------------------------------->
+<!------------------------------------------->
+
 <h2 id="tips">Algoritmos</h2>
+
 
 #### Busqueda binaria
 
@@ -412,6 +648,122 @@ int gcd(int a, int b) {
     return gcd(b, a % b);
 }
 ```
-o tambien
+
+#### Fibonacci Memoizacion
 ```cpp
+int FibMemoizacion(int n, vector<int>&arr){//4
+    if(arr[n] != 0) return arr[n];
+    if(n < 2) return n;
+    //arr[4] = 2 + 1 --> 3
+    arr[n] = FibMemoizacion(n-1 , arr) + FibMemoizacion(n - 2, arr);//3
+    //arr[4] = 3,arr[3] = 2 , arr[2] = 1
+    return arr[n];
+}
+```
+#### Fibonacci Dinamico
+```cpp
+int FibDinamico(int n){
+    vector<int>dinamico(n+1 , 0);
+
+    dinamico[0] = 0;
+    dinamico[1] = 1;
+
+    for(int i = 2; i < n; i++){
+        dinamico[i] = dinamico[i-1] + dinamico[i-2];
+    }
+
+    return dinamico[n];
+}
+```
+#### Quicksort
+```cpp
+void quicksort(int* arr, int izq, int der){
+    int i = izq, j = der, temp;
+    int p = arr[(izq + der)/2];//toma un numero del arreglo como valor :: exactamente el q esta en la posicion media del mismo
+
+    while(i <= j){
+        while(arr[i] < p) i++;
+        while(arr[j] > p) j--;
+
+        if(i <= j){
+            temp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = temp;
+            i++;
+            j--;
+        }
+    }
+
+    if(izq < j) quicksort(arr, izq, j);
+    if(i < der) quicksort(arr, i, der);
+
+}
+```
+#### Exponenciacion Rapida
+```cpp
+ll expMod(ll a, ll n, int m){
+    if(n == 0) return 1;
+    if(n == 1) return a % m;
+    if(n % 2 == 0){
+        ll resultado = exp(a, n/2);
+        return ((resultado % m) * (resultado % m)) % m;
+    }
+    else{
+        return ((exp(a, n-1) % m) * (a % m)) % m;
+    }
+}
+```
+#### Algoritmo de Euclides
+```cpp
+while(a % b != 0){
+    a %= b;
+    swap(a,b);
+}
+
+mcd = b;
+mcm = (p*q)/mcd;
+```
+#### Algoritmo de Kadane
+```cpp
+int kadane(int A[], int N) {
+    int maximo_total = A[0];
+    int maximo_actual = A[0];
+
+    for (int i = 1; i < N; i++) {
+        maximo_actual = max(A[i], maximo_actual + A[i]);
+        if (maximo_actual > maximo_total) {
+            maximo_total = maximo_actual;
+        }
+    }
+
+    return maximo_total;
+}
+```
+#### Windows Sliding
+```cpp
+int maxSum(int arr[], int n, int k)
+{
+    // n must be greater
+    if (n < k) {
+        cout << "Invalid";
+        return -1;
+    }
+ 
+    // Compute sum of first window of size k
+    int max_sum = 0;
+    for (int i = 0; i < k; i++)
+        max_sum += arr[i];
+ 
+    // Compute sums of remaining windows by
+    // removing first element of previous
+    // window and adding last element of
+    // current window.
+    int window_sum = max_sum;
+    for (int i = k; i < n; i++) {
+        window_sum += arr[i] - arr[i - k];
+        max_sum = max(max_sum, window_sum);
+    }
+ 
+    return max_sum;
+}
 ```
