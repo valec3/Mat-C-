@@ -371,9 +371,110 @@ vector<int> v(s.begin(), s.end()); // v = {1, 2, 3}
 ```
 
 
+### Union e interseccion de conjuntos
 
+```cpp
+set<int> s1 = {1, 2, 3};
+set<int> s2 = {3, 4, 5};
+set<int> s3;
+
+// Union
+set_union(s1.begin(), s1.end(), s2.begin(), s2.end(), inserter(s3, s3.begin()));
+// s3 = {1, 2, 3, 4, 5}
+
+// Interseccion
+set_intersection(s1.begin(), s1.end(), s2.begin(), s2.end(), inserter(s3, s3.begin()));
+// s3 = {3}
+```
+
+### Diferencia de conjuntos
+
+```cpp
+set<int> s1 = {1, 2, 3};
+set<int> s2 = {3, 4, 5};
+set<int> s3;
+
+// Diferencia
+set_difference(s1.begin(), s1.end(), s2.begin(), s2.end(), inserter(s3, s3.begin()));
+// s3 = {1, 2}
+
+// Diferencia simetrica
+set_symmetric_difference(s1.begin(), s1.end(), s2.begin(), s2.end(), inserter(s3, s3.begin()));
+// s3 = {1, 2, 4, 5}
+
+```
+
+### Subconjuntos
+
+```cpp
+set<int> s1 = {1, 2, 3};
+set<int> s2 = {1, 2};
+set<int> s3 = {1, 2, 3, 4};
+
+// s2 es subconjunto de s1
+if(includes(s1.begin(), s1.end(), s2.begin(), s2.end())) cout << "Es subconjunto" << endl;
+
+// s3 no es subconjunto de s1
+if(includes(s1.begin(), s1.end(), s3.begin(), s3.end())) cout << "Es subconjunto" << endl;
+```
 
 ## Mapas
+
+#### Crear un mapa
+
+```cpp
+map<string, int> m; // m = {}
+
+// Con un tamaño inicial
+map<string, int> m(3); // m = {("", 0), ("", 0), ("", 0)}
+```
+#### Longitud de un mapa
+
+```cpp
+map<string, int> m = {{"a", 1}, {"b", 2}, {"c", 3}};
+int len = m.size(); // len = 3
+```
+#### Insertar un elemento en un mapa
+
+```cpp
+map<string, int> m = {{"a", 1}, {"b", 2}, {"c", 3}};
+m["d"] = 4; // m = {{"a", 1}, {"b", 2}, {"c", 3}, {"d", 4}}
+```
+#### Eliminar un elemento en un mapa
+
+```cpp
+map<string, int> m = {{"a", 1}, {"b", 2}, {"c", 3}};
+m.erase("b"); // m = {{"a", 1}, {"c", 3}}
+```
+#### Encontrar un elemento en un mapa
+
+```cpp
+map<string, int> m = {{"a", 1}, {"b", 2}, {"c", 3}};
+if(m.find("b") != m.end()) cout << "Encontrado" << endl;
+```
+
+#### Encontrar el primer elemento en un mapa
+
+```cpp
+map<string, int> m = {{"a", 1}, {"b", 2}, {"c", 3}};
+auto it = m.begin();
+cout << it->first << " " << it->second << endl; // a 1
+```
+
+#### Mapear un vector a un mapa
+
+```cpp
+vector<int> v = {1, 2, 3};
+map<int, int> m;
+for(int i = 0; i < v.size(); i++) {
+    m[i] = v[i];
+}
+// m = {{0, 1}, {1, 2}, {2, 3}}
+```
+
+
+
+
 ## Conjuntos
 #### Crear un conjunto
 
@@ -396,7 +497,15 @@ int len = s.size(); // len = 3
 ```cpp
 set<int> s = {1, 2, 3};
 s.insert(4); // s = {1, 2, 3, 4}
-```
+``` 
+
+
+
+
+
+
+
+
 ## Arboles
 -------
 ### Crear un arbol
