@@ -30,14 +30,14 @@ int gauss(int n) {
 }
 ```
 
-## Fibonacci
+### Fibonacci
 ```c++
 int fib(int n) {
     if (n <= 1) return n;
     return fib(n - 1) + fib(n - 2);
 }
 ```
-## Maximo Comun Divisor
+### Maximo Comun Divisor
 ```c++
 int gcd(int a, int b) {
     if (b == 0) return a;
@@ -57,7 +57,7 @@ int gcd(int a, int b) {
 }
 ```
 
-## Minimo Comun Multiplo
+### Minimo Comun Multiplo
 ```c++
 
 int lcm(int a, int b) {
@@ -69,7 +69,7 @@ int lcm(int a, int b) {
 }
 ```
 
-## Kadane’s Algorithm (Maxima suma de subarreglo)
+### Kadane’s Algorithm (Maxima suma de subarreglo)
 ```c++
 int maxSubArraySum(int a[], int size) {
     int max_so_far = INT_MIN, max_ending_here = 0;
@@ -85,7 +85,53 @@ int maxSubArraySum(int a[], int size) {
     return max_so_far;
 }
 ```
+### Sieve of Eratosthenes
+```c++
+void sieveOfEratosthenes(int n) {
+    bool prime[n + 1];
+    memset(prime, true, sizeof(prime));
+ 
+    for (int p = 2; p * p <= n; p++) {
+        if (prime[p] == true) {
+            for (int i = p * p; i <= n; i += p)
+                prime[i] = false;
+        }
+    }
+ 
+    for (int p = 2; p <= n; p++)
+        if (prime[p])
+            cout << p << " ";
+}
+```
 
+### Siguiente Permutacion
+```c++
+void nextPermutation(vector<int>& nums) {
+        int n = nums.size(), index = -1;
+        for(int i=n-2; i>=0; i--){
+            if(nums[i] < nums[i+1]){
+                index = i;
+                break;
+            }
+        }
+        for(int i=n-1; i>=index && index != -1; i--){
+            if(nums[i] > nums[index]){
+                swap(nums[i], nums[index]);
+                break;
+            }
+        }
+        reverse(nums.begin() + index + 1, nums.end());
+}
+// second version
+void nextPermutation(vector<int>& nums) {
+    next_permutation(nums.begin(), nums.end());
+}
+
+```
+
+
+
+<h2 id="AthBus">Algoritmos de Busqueda</h2>
 
 ## Busqueda Binaria
 
@@ -107,24 +153,51 @@ int binarySearch(int arr[], int l, int r, int x) {
 }
 ```
 
-## Sieve of Eratosthenes
+### Busqueda Binaria en un arreglo rotado
 ```c++
-void sieveOfEratosthenes(int n) {
-    bool prime[n + 1];
-    memset(prime, true, sizeof(prime));
+int pivotedBinarySearch(int arr[], int n, int key) {
+    int pivot = findPivot(arr, 0, n - 1);
  
-    for (int p = 2; p * p <= n; p++) {
-        if (prime[p] == true) {
-            for (int i = p * p; i <= n; i += p)
-                prime[i] = false;
-        }
-    }
+    // If we didn't find a pivot, then
+    // array is not rotated at all
+    if (pivot == -1)
+        return binarySearch(arr, 0, n - 1, key);
  
-    for (int p = 2; p <= n; p++)
-        if (prime[p])
-            cout << p << " ";
+    // If we found a pivot, then first
+    // compare with pivot and then
+    // search in two subarrays around pivot
+    if (arr[pivot] == key)
+        return pivot;
+ 
+    if (arr[0] <= key)
+        return binarySearch(arr, 0, pivot - 1, key);
+ 
+    return binarySearch(arr, pivot + 1, n - 1, key);
 }
 ```
+
+### Busqueda de un pico
+
+Este algoritmo busca un pico en un arreglo, un pico es un elemento que es mayor que sus vecinos, este algoritmo es una variacion de la busqueda binaria.
+
+```c++
+int findPeakUtil(int arr[], int low, int high, int n) {
+    int mid = low + (high - low) / 2;
+    if ((mid == 0 || arr[mid - 1] <= arr[mid]) &&
+        (mid == n - 1 || arr[mid + 1] <= arr[mid]))
+        return mid;
+    else if (mid > 0 && arr[mid - 1] > arr[mid])
+        return findPeakUtil(arr, low, (mid - 1), n);
+    else
+        return findPeakUtil(arr, (mid + 1), high, n);
+}
+
+int findPeak(int arr[], int n) {
+    return findPeakUtil(arr, 0, n - 1, n);
+}
+```
+
+
 
 
 
