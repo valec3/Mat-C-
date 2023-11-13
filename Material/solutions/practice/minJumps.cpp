@@ -23,16 +23,19 @@ class Solution{
                 {
                     return jump;
                 }
-
+                // Maximo alcance que se puede tener desde el indice i
                 maxReach = max(maxReach, i + arr[i]);
                 step--;
+                // Si se llega al final del alcance, se debe hacer un salto
                 if (step == 0)
                 {
                     jump++;
+                    // Si el indice i es mayor o igual al maximo alcance, significa que no se puede llegar al final
                     if (i >= maxReach)
                     {
                         return -1;
                     }
+                    // Se actualiza el alcance
                     step = maxReach - i;
                 }
             }
