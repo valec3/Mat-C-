@@ -14,3 +14,19 @@ int findDuplicate(vector<int>& nums) {
     }
     return numDuplicate;
 }
+int findDuplicate2(vector<int>&nums){
+    int n = nums.size();
+    int aux[n+1];
+    for(int i = 0; i < n; i++){
+        aux[i] = 0;
+    }
+    for(int i = 0; i < n; i++){
+        aux[nums[i]]++;
+    }
+    for(int i = 0; i < n; i++){
+        if(aux[i] > 1){
+            return i;
+        }
+    }
+    return -1;
+}
