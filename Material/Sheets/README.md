@@ -295,5 +295,15 @@ string reverseArray(string s){
 }
 ```
 
+## TEMPLATE MOD
+```c++
+ ll gcd(ll a, ll b){if(b > a){return gcd(b, a);} if(b == 0){return a;} return gcd(b, a % b);}
+  ll modpow(ll a,ll b){ll res = 1; while(b>0){if(b&1)res=(res*a)%MOD; a=(a*a)%MOD; b=b>>1;} return res;}        
+  ll mod_add(ll a,ll b){return ((a%MOD) + (b%MOD))%MOD;}
+  ll mod_sub(ll a,ll b){return ((a%MOD) - (b%MOD) + MOD)%MOD;}
+  ll mod_mul(ll a,ll b){return ((a%MOD) * (b%MOD))%MOD;}
+  ll mod_div(ll a,ll b){return ((a%MOD) * modpow(b,MOD-2))%MOD;}
+```
+
 
 
