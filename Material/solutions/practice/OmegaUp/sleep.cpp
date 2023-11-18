@@ -1,28 +1,30 @@
-#include<bits/stdc++.h>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+#include <iterator>
+#include <set>
 
 using namespace std;
 
-int contarTriplets(vector<int>& lista, int n) {
-    int count = 0;
-    sort(lista.begin(), lista.end());
+typedef long long ll;
 
-    for (int i = 0; i < n - 2; i++) {
-        int j = i + 1;
-        int k = n - 1;
+ll contarTriplets(vector<ll>& A, ll n, ll X) {
+    ll count = 0;
+    sort(A.begin(), A.end());
+    
+    for (auto it = A.begin(); it != A.end(); ++it) {
+        auto low = next(it);
+        auto high = prev(A.end());
 
-        while (j < k) {
-            int suma = lista[i] + lista[j] + lista[k];
-
-            if (suma == 5000) {
+        while (low < high) {
+            if (*it + *low + *high == X) {
                 count++;
-                j++;
-                k--;
-            }
-            else if (suma < 5000) {
-                j++;
-            }
-            else {
-                k--;
+                low++;
+                high--;
+            } else if (*it + *low + *high < X) {
+                low++;
+            } else {
+                high--;
             }
         }
     }
@@ -31,14 +33,22 @@ int contarTriplets(vector<int>& lista, int n) {
 }
 
 int main() {
-    int n;
-    cin >> n;
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
 
-    vector<int> lista(n);
-    for (int i = 0; i < n; i++) {
-        cin >> lista[i];
+    ll n;
+    cin >> n;
+    // vector<ll> lista(n);
+    set<ll> listaSet;
+    int elemento;
+    for(int i = 0; i < n; i++) {
+        cin >> elemento;
+        if(elemento <= 5000) listaSet.insert(elemento);
     }
-    int resultado = contarTriplets(lista, n);
+    // pass to vector
+    vector<ll> lista(listaSet.begin(), listaSet.end());
+
+    ll resultado = contarTriplets(lista, n, 5000ll);
     cout << resultado << endl;
 
     return 0;
