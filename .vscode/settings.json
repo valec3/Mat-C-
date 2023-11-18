@@ -6,7 +6,8 @@
         "regex": "cpp",
         "tuple": "cpp",
         "chrono": "cpp",
-        "variant": "cpp"
+        "variant": "cpp",
+        "valarray": "cpp"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }

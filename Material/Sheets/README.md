@@ -1,8 +1,22 @@
-# Algoritmos tipicos
+<h1 style="text-align:center; font-weight:bold;color:#3af; border-bottom:4px solid #00d">Algoritmos</h1>
 
-<a>Algorithmos de Busqueda</a>
-<a href="#AthOrd">Algorithmos de Ordenamiento</a>
+<ol style="list-style:none">
+    <li><a href="#AthMat">Algoritmos Matematicos</a></li>
+    <li><a href="#AthBus">Algoritmos de Busqueda</a></li>
+    <li><a href="#AthOrd">Algorithmos de Ordenamiento</a></li>
+    <li><a href="#AthGraf">Algoritmos de Grafos</a></li>
+    <li><a href="#AthStr">Algoritmos de Strings</a></li>
+    <li><a href="#AthGeo">Algoritmos Geometricos</a></li>
+    <li><a href="#AthDin">Algoritmos de Programacion Dinamica</a></li>
+    <li><a href="#AthGre">Algoritmos Greedy</a></li>
+    <li><a href="#AthBit">Algoritmos Bitwise</a></li>
+    <li><a href="#AthRan">Algoritmos Random</a></li>
+    <li><a href="#AthOtr">Otros Algoritmos</a></li>
+</ol>
 
+
+
+<h2 id="AthMat" style="color:#596">Algoritmos Matematicos</h2>
 
 ### Primos
 
@@ -70,6 +84,7 @@ int lcm(int a, int b) {
 ```
 
 ### Kadane’s Algorithm (Maxima suma de subarreglo)
+El algoritmo de Kadane es un algoritmo para la búsqueda del subarreglo de suma máxima en un arreglo unidimensional con números con signo. El algoritmo de Kadane es un algoritmo de programación dinámica que se resuelve en tiempo lineal.
 ```c++
 int maxSubArraySum(int a[], int size) {
     int max_so_far = INT_MIN, max_ending_here = 0;
@@ -86,6 +101,7 @@ int maxSubArraySum(int a[], int size) {
 }
 ```
 ### Sieve of Eratosthenes
+El algoritmo de la criba de Eratóstenes es un método para encontrar todos los números primos hasta un límite dado. Fue creado por el matemático griego Eratóstenes (276-194 a. C.), que lo describió por primera vez en el año 240 a. C.
 ```c++
 void sieveOfEratosthenes(int n) {
     bool prime[n + 1];
@@ -102,6 +118,7 @@ void sieveOfEratosthenes(int n) {
         if (prime[p])
             cout << p << " ";
 }
+
 ```
 
 ### Siguiente Permutacion
@@ -127,6 +144,50 @@ void nextPermutation(vector<int>& nums) {
     next_permutation(nums.begin(), nums.end());
 }
 
+```
+### Permutaciones
+El algoritmo de permutación de Johnson-Trotter es un algoritmo para generar todas las permutaciones de un conjunto dado.
+```c++
+```c++
+void permute(vector<int>& nums, int l, int r) {
+    if (l == r) {
+        // process permutation
+    }
+    else {
+        for (int i = l; i <= r; i++) {
+            swap(nums[l], nums[i]);
+            permute(nums, l + 1, r);
+            swap(nums[l], nums[i]);
+        }
+    }
+}
+```
+### Factorial
+```c++
+int factorial(int n) {
+    if (n == 0) return 1;
+    return n * factorial(n - 1);
+}
+
+// Segunda version con MOD para evitar overflow
+const int MOD = 1e9 + 7;
+int factorial(int n) {
+    int res = 1;
+    for (int i = 2; i <= n; i++)
+        res = (res * i) % MOD;
+    return res;
+}
+
+```
+
+### Combinaciones
+Este algoritmo calcula el numero de combinaciones de n elementos tomados de k en k.
+```c++
+int binomialCoeff(int n, int k) {
+    if (k > n) return 0;
+    if (k == 0 || k == n) return 1;
+    return binomialCoeff(n - 1, k - 1) + binomialCoeff(n - 1, k);
+}
 ```
 
 
