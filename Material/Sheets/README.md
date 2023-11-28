@@ -51,6 +51,54 @@ int fib(int n) {
     return fib(n - 1) + fib(n - 2);
 }
 ```
+### Fórmula de Binet
+```c++
+int fib(int n) {
+    double phi = (1 + sqrt(5)) / 2;
+    return round(pow(phi, n) / sqrt(5));
+}
+```
+### Buscar el indice del numero n en la secuencia de fibonacci
+```c++
+int findIndex(int n) {
+    if (n <= 1) return n;
+    int a = 0, b = 1, c = 1;
+    int res = 1;
+    while (c < n) {
+        c = a + b;
+        res++;
+        a = b;
+        b = c;
+    }
+    return res;
+}
+////////////////////
+// second version
+ll findIndex(ll n) {
+
+    if(n==1) return 1;
+    if(n==2) return 3;
+    if(n==3) return 4;
+
+    double phi = (1ll + sqrt(5ll)) / 2ll;
+    ll index = round(log(n * sqrt(5ll) + 0.5) / log(phi));
+    ll fib = round((pow(phi, index) - pow(1ll - phi, index)) / sqrt(5ll));
+    if (fib == n)
+        return index;
+    else
+        return -1; // n is not a Fibonacci number
+}
+// /////////////////////////
+// third version
+int findIndex(int n) {
+    double phi = (1 + sqrt(5)) / 2;
+    return round(log(n * sqrt(5) + 0.5) / log(phi));
+}
+
+```
+
+
+
 ### Maximo Comun Divisor
 ```c++
 int gcd(int a, int b) {

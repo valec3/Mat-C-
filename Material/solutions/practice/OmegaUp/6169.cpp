@@ -14,19 +14,19 @@ typedef vector<int> vi;
 int main(){
     ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
     
-    int n{},movs0{},movs1{},ans{};
+    int n{},k{};
     cin>>n;
-    int cards[n];
+    int a[n];
     for(int i=0;i<n;i++){
-        cin>>cards[i];
-        if(cards[i]!=0 && i%2==0) movs0++;
-        if(cards[i]!=1 && i%2==1) movs0++;
-
-        if(cards[i]!=1 && i%2==0) movs1++;
-        if(cards[i]!=0 && i%2==1) movs1++;
+        cin>>a[i];
     }
-    ans=min(movs0,movs1);
-    cout<<ans<<endl;
-
-    return 0;
+    cin>>k;
+    for(int i=0;i<n;i++){
+        if(a[i]==k) {
+            cout<<i<<endl;
+            return 0;
+        }
+            
+    }
+    cout<<"NO"<<endl;
 }
