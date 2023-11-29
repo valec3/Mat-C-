@@ -62,6 +62,27 @@ nombre.insert(posicion, cadena);
 ```cpp
 nombre.find(caracter);
 ```
+#### Convertir a mayúsculas
+```cpp
+// first version
+for (int i = 0; i < nombre.size(); i++) {
+    nombre[i] = toupper(nombre[i]);
+}
+// second version
+transform(nombre.begin(), nombre.end(), nombre.begin(), ::toupper);
+```
+
+#### Convertir a minúsculas
+```cpp
+// first version
+for (int i = 0; i < nombre.size(); i++) {
+    nombre[i] = tolower(nombre[i]);
+}
+// second version
+// transform(int first, int last, int result, function)
+transform(nombre.begin(), nombre.end(), nombre.begin(), ::tolower);
+
+```
 
 ##### Buscar un rango de caracteres en el string
 ```cpp
@@ -79,7 +100,9 @@ nombre.find(cadena, posicion);
 ```
 
 <!-- Exercici 1 -->
-[Exercici 1]()
+[Exercici 1](https://omegaup.com/arena/problem/ContandoOvejas/)
+<!-- Exercici 2 -->
+[Exercici 2](https://omegaup.com/arena/problem/Coincidencias-de-una-cadena-con-/#problems)
 
 # VECTORES
 
@@ -281,3 +304,8 @@ set<tipo> nombre = {elemento1, elemento2, elemento3, ...};
 ```cpp
 nombre.insert(elemento);
 ```
+
+<!-- Exercise 1 -->
+[Exercise 1](https://omegaup.com/arena/problem/Ordenar/#problems)
+
+<!-- Exercise 2 -->
