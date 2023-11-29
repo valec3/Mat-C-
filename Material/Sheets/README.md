@@ -18,7 +18,7 @@
 
 <h2 id="AthMat" style="color:#596">Algoritmos Matematicos</h2>
 
-### Primos
+#### Primos
 
 - (Ver si un numero es primo)[#]
 ```c++
@@ -37,28 +37,28 @@ bool isPrime(int n)
 }
 ```
 
-### Gauss
+#### Gauss
 ```c++
 int gauss(int n) {
     return (n * (n + 1)) / 2;
 }
 ```
 
-### Fibonacci
+#### Fibonacci
 ```c++
 int fib(int n) {
     if (n <= 1) return n;
     return fib(n - 1) + fib(n - 2);
 }
 ```
-### Fórmula de Binet
+#### Fórmula de Binet
 ```c++
 int fib(int n) {
     double phi = (1 + sqrt(5)) / 2;
     return round(pow(phi, n) / sqrt(5));
 }
 ```
-### Buscar el indice del numero n en la secuencia de fibonacci
+#### Buscar el indice del numero n en la secuencia de fibonacci
 ```c++
 int findIndex(int n) {
     if (n <= 1) return n;
@@ -99,7 +99,7 @@ int findIndex(int n) {
 
 
 
-### Maximo Comun Divisor
+#### Maximo Comun Divisor
 ```c++
 int gcd(int a, int b) {
     if (b == 0) return a;
@@ -119,7 +119,7 @@ int gcd(int a, int b) {
 }
 ```
 
-### Minimo Comun Multiplo
+#### Minimo Comun Multiplo
 ```c++
 
 int lcm(int a, int b) {
@@ -131,7 +131,7 @@ int lcm(int a, int b) {
 }
 ```
 
-### Kadane’s Algorithm (Maxima suma de subarreglo)
+#### Kadane’s Algorithm (Maxima suma de subarreglo)
 El algoritmo de Kadane es un algoritmo para la búsqueda del subarreglo de suma máxima en un arreglo unidimensional con números con signo. El algoritmo de Kadane es un algoritmo de programación dinámica que se resuelve en tiempo lineal.
 ```c++
 int maxSubArraySum(int a[], int size) {
@@ -148,7 +148,7 @@ int maxSubArraySum(int a[], int size) {
     return max_so_far;
 }
 ```
-### Sieve of Eratosthenes
+#### Sieve of Eratosthenes
 El algoritmo de la criba de Eratóstenes es un método para encontrar todos los números primos hasta un límite dado. Fue creado por el matemático griego Eratóstenes (276-194 a. C.), que lo describió por primera vez en el año 240 a. C.
 ```c++
 void sieveOfEratosthenes(int n) {
@@ -169,7 +169,9 @@ void sieveOfEratosthenes(int n) {
 
 ```
 
-### Siguiente Permutacion
+#### Siguiente Permutacion
+La siguiente permutación en orden lexicográfico de 1, 2, ..., n es la permutación de 1, 2, ..., n que aparece justo después de la permutación dada. Si la permutación dada es la última permutación, la siguiente permutación es la primera permutación.
+
 ```c++
 void nextPermutation(vector<int>& nums) {
         int n = nums.size(), index = -1;
@@ -193,9 +195,9 @@ void nextPermutation(vector<int>& nums) {
 }
 
 ```
-### Permutaciones
+#### Permutaciones
 El algoritmo de permutación de Johnson-Trotter es un algoritmo para generar todas las permutaciones de un conjunto dado.
-```c++
+
 ```c++
 void permute(vector<int>& nums, int l, int r) {
     if (l == r) {
@@ -210,7 +212,7 @@ void permute(vector<int>& nums, int l, int r) {
     }
 }
 ```
-### Factorial
+#### Factorial
 ```c++
 int factorial(int n) {
     if (n == 0) return 1;
@@ -225,10 +227,10 @@ int factorial(int n) {
         res = (res * i) % MOD;
     return res;
 }
-
 ```
 
-### Combinaciones
+
+#### Combinaciones
 Este algoritmo calcula el numero de combinaciones de n elementos tomados de k en k.
 ```c++
 int binomialCoeff(int n, int k) {
@@ -242,8 +244,7 @@ int binomialCoeff(int n, int k) {
 
 <h2 id="AthBus">Algoritmos de Busqueda</h2>
 
-## Busqueda Binaria
-
+##### Busqueda Binaria
 ```c++
 int binarySearch(int arr[], int l, int r, int x) {
     if (r >= l) {
@@ -257,12 +258,11 @@ int binarySearch(int arr[], int l, int r, int x) {
  
         return binarySearch(arr, mid + 1, r, x);
     }
- 
     return -1;
 }
 ```
 
-### Busqueda Binaria en un arreglo rotado
+#### Busqueda Binaria en un arreglo rotado
 ```c++
 int pivotedBinarySearch(int arr[], int n, int key) {
     int pivot = findPivot(arr, 0, n - 1);
@@ -285,7 +285,7 @@ int pivotedBinarySearch(int arr[], int n, int key) {
 }
 ```
 
-### Busqueda de un pico
+#### Busqueda de un pico
 
 Este algoritmo busca un pico en un arreglo, un pico es un elemento que es mayor que sus vecinos, este algoritmo es una variacion de la busqueda binaria.
 
@@ -312,7 +312,37 @@ int findPeak(int arr[], int n) {
 
 <h2 id="AthOrd">Algorithmos de Ordenamiento</h2>
 
-### Quick Sort
+#### Bubble Sort
+Complexity: O(n^2)
+```c++
+void bubbleSort(int arr[], int n) {
+    for (int i = 0; i < n - 1; i++)
+        for (int j = 0; j < n - i - 1; j++)
+            if (arr[j] > arr[j + 1])
+                swap(arr[j], arr[j + 1]);
+}
+```
+#### Insertion Sort
+Complexity: O(n^2)
+```c++
+void insertionSort(int arr[], int n) {
+    int key, j;
+    for (int i = 1; i < n; i++) {
+        key = arr[i];
+        j = i - 1;
+ 
+        while (j >= 0 && arr[j] > key) {
+            arr[j + 1] = arr[j];
+            j = j - 1;
+        }
+        arr[j + 1] = key;
+    }
+}
+```
+
+#### Quick Sort
+Complexity: O(nlogn)
+Peor caso: O(n^2)
 ```c++
 int partition (int arr[], int low, int high) {
     int pivot = arr[high];    // pivot
@@ -330,7 +360,8 @@ int partition (int arr[], int low, int high) {
 }
 ```
 
-### Counting Sort
+#### Counting Sort
+
 ```c++
 void countSort(int arr[], int n, int exp) {
     int output[n]; // output array
@@ -357,7 +388,8 @@ void countSort(int arr[], int n, int exp) {
         arr[i] = output[i];
 }
 ```
-### Merge sort
+#### Merge sort
+Complexity: O(nlogn)
 ```c++
 void merge(int arr[], int l, int m, int r) {
     int i, j, k;
@@ -388,9 +420,7 @@ void merge(int arr[], int l, int m, int r) {
         }
         k++;
     }
- 
-    /* Copy the remaining elements of L[], if there
-       are any */
+```
 
 
 ## Revese Array

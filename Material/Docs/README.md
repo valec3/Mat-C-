@@ -1,5 +1,4 @@
-## ***Documentacion de metodos importantes C++***
-
+## ***DOCUMENTACION  C++***
 
 <a href="#arreglos">Arreglos</a>
 <a href="#strings">Strings</a>
@@ -14,63 +13,81 @@
 
 <h2 id="arreglos">Arreglos</h2>
 
-## Arreglos
-### Crear un arreglo
+#### Crear un arreglo
 
 ```cpp
 int a[3]; // a = {0, 0, 0}
 ```
-### Crear un arreglo con un tamaño inicial
+#### Crear un arreglo con un tamaño inicial
 
 ```cpp
 int a[3] = {1, 2, 3}; // a = {1, 2, 3}
 ```
-### Longitud de un arreglo
+#### Longitud de un arreglo
 
 ```cpp
 int a[3] = {1, 2, 3};
 int len = sizeof(a) / sizeof(a[0]); // len = 3
 ```
-### Ordenar un arreglo
+#### Ordenar un arreglo
 
 ```cpp
 int a[3] = {3, 2, 1};
 sort(a, a + 3); // a = {1, 2, 3}
-```
-## Strings
--------
 
-#### String to Int
+```
+#### Ordenar un arreglo de forma descendente
 
 ```cpp
-string s = "123";
-int x = stoi(s);
+int a[3] = {1, 2, 3};
+sort(a, a + 3, greater<int>()); // a = {3, 2, 1}
 ```
-#### Int to String
+<!-- 
+###################################################
+###################################################
+###################################################
+###################################################
+###################################################
+ -->
+
+
+<h2 id='strings'>Strings</h2>
 
 ```cpp
-int x = 123;
-string s = to_string(x);
+#include <string>
 ```
-#### String to Char
+
+#### Crear un string
 
 ```cpp
-string s = "123";
-char c = s[0];
-```
-#### Char to String
+string s{}; // s = ""
 
-```cpp
-char c = '1';
-string s = string(1, c);
-```
+// with a initial value
+string s{"123"}; // s = "123"
+string r = "123"; // r = "123"
 
+// with a size
+string s(3, '0'); // s = "000"
+```
 #### Longitud de un string
 
 ```cpp
 string s = "123";
-int len = s.length();
+int len = s.length(); // len = 3
 ```
+
+#### Castear un string
+    
+```cpp
+// string to int
+string s = "123";
+int x = stoi(s); // x = 123
+
+// int to string
+int x = 123;
+string s = to_string(x); // s = "123"
+```
+
 #### Comparar strings
 
 ```cpp
@@ -84,12 +101,14 @@ if(s1 == s2) cout << "Son iguales" << endl;
 ```cpp
 string s1 = "123";
 string s2 = "123";
-if(strcmpi(s1.c_str(), s2.c_str()) == 0) cout << "Son iguales" << endl;
+if(strcmpi(s1.c_str(), s2.c_str()) == 0) 
+    cout << "Son iguales" << endl;
 ```
 
 #### Substring
 
 ```cpp
+// substr(position, length)
 string s = "123";
 string sub = s.substr(1, 2); // sub = "23"
 ```
@@ -97,6 +116,7 @@ string sub = s.substr(1, 2); // sub = "23"
 #### Encontrar un caracter en un string
 
 ```cpp
+// find(char) return position or -1
 string s = "123";
 int pos = s.find('2'); // pos = 1
 // si no lo encuentra devuelve -1
@@ -107,7 +127,6 @@ int pos = s.find('2'); // pos = 1
 ```cpp
 string s = "123";
 int pos = s.find("23"); // pos = 1
-// si no lo encuentra devuelve -1
 ```
 #### Reemplazar un caracter en un string
 
